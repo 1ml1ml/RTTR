@@ -83,14 +83,15 @@ int main()
 ExampleSuperclass::ExampleSuperclass()
 {
 	RTTR_REGISTER_STATIC_MEMBER(ExampleSuperclass, RTTR::Public, s_i);
-	RTTR_REGISTER_NORMAL_MEMBER(ExampleSuperclass,RTTR::Public, m_i);
+	RTTR_REGISTER_NORMAL_MEMBER(ExampleSuperclass, RTTR::Public, m_i);
 
-	RTTR_REGISTER_STATIC_METHOD(ExampleSuperclass,RTTR::Public, int, func1, int);
-	RTTR_REGISTER_STATIC_METHOD(ExampleSuperclass,RTTR::Public, void, func1, int, int);
+	RTTR_REGISTER_STATIC_METHOD(ExampleSuperclass, RTTR::Public, int, func1, int);
+	RTTR_REGISTER_STATIC_METHOD(ExampleSuperclass, RTTR::Public, void, func1, int, int);
 
-	RTTR_REGISTER_NORMAL_METHOD(ExampleSuperclass,RTTR::Public, void, func2, int);
-	RTTR_REGISTER_NORMAL_METHOD(ExampleSuperclass,RTTR::Public, void, func2, int, int);
-	RTTR_REGISTER_CONST_METHOD(ExampleSuperclass,RTTR::Public, void, func2, int, int);
+	RTTR_REGISTER_NORMAL_METHOD(ExampleSuperclass, RTTR::Public, void, func2, int);
+	RTTR_REGISTER_NORMAL_METHOD(ExampleSuperclass, RTTR::Public, void, func2, int, int);
+
+	RTTR_REGISTER_CONST_METHOD(ExampleSuperclass, RTTR::Public, void, func2, int, int);
 }
 
 Example::Example() : ExampleSuperclass()

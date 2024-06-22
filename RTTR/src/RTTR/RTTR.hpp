@@ -11,11 +11,17 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#ifdef RTTR_PROJECT
+	#define RTTR_API __declspec(dllexport)
+#else
+	#define RTTR_API __declspec(dllimport)
+#endif
+
 namespace RTTR
 {
 	class TypeInfo;
 
-	enum Interview : unsigned char
+	enum RTTR_API Interview : unsigned char
 	{
 		None = 0,
 		Public,
@@ -26,7 +32,7 @@ namespace RTTR
 	/// <summary>
 	/// 超类信息
 	/// </summary>
-	struct SuperclassInfo
+	struct RTTR_API SuperclassInfo
 	{
 		Interview interview{ None };
 		TypeInfo* info{ nullptr };
@@ -35,7 +41,7 @@ namespace RTTR
 	/// <summary>
 	/// 成员信息
 	/// </summary>
-	struct MemberInfo
+	struct RTTR_API MemberInfo
 	{
 	public:
 		std::string name{};
@@ -46,7 +52,7 @@ namespace RTTR
 	/// <summary>
 	/// 静态成员信息
 	/// </summary>
-	struct StaticMemberInfo : public MemberInfo
+	struct RTTR_API StaticMemberInfo : public MemberInfo
 	{
 	public:
 		/// <summary>
@@ -64,7 +70,7 @@ namespace RTTR
 	/// <summary>
 	/// 普通成员信息
 	/// </summary>
-	struct NormalMemberInfo : public MemberInfo
+	struct RTTR_API NormalMemberInfo : public MemberInfo
 	{
 	public:
 		/// <summary>
@@ -84,7 +90,7 @@ namespace RTTR
 	/// <summary>
 	/// 方法信息
 	/// </summary>
-	struct MethodInfo
+	struct RTTR_API MethodInfo
 	{
 	public:
 		/// <summary>
@@ -108,14 +114,14 @@ namespace RTTR
 	/// <summary>
 	/// 静态方法信息
 	/// </summary>
-	struct StaticMethodInfo : public MethodInfo { };
+	struct RTTR_API StaticMethodInfo : public MethodInfo { };
 
-	struct NormalMethodInfo : public MethodInfo { };
+	struct RTTR_API NormalMethodInfo : public MethodInfo { };
 
-	struct ConstMethodInfo : public MethodInfo { };
+	struct RTTR_API ConstMethodInfo : public MethodInfo { };
 
 	class TypeInfoImpl;
-	class TypeInfo
+	class RTTR_API TypeInfo
 	{
 	public:
 		/// <summary>

@@ -8,4 +8,18 @@ include_directories(
 	"src" 
 	"src/RTTR")
 
-add_executable(${PROJECT_NAME} ${src})
+add_compile_definitions(${PROJECT_NAME}_PROJECT)
+
+add_library(${PROJECT_NAME} SHARED  ${src})
+add_executable(RTTRExample ${src})
+
+# 指定库的输出名称
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+
+# 安装目标和头文件
+install(TARGETS ${PROJECT_NAME}
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin)
+
+install(DIRECTORY src/ DESTINATION include FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")
