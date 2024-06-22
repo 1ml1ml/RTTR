@@ -20,6 +20,7 @@
 namespace RTTR
 {
 	class TypeInfo;
+	class TypeInfoImpl;
 
 	enum RTTR_API Interview : unsigned char
 	{
@@ -116,11 +117,19 @@ namespace RTTR
 	/// </summary>
 	struct RTTR_API StaticMethodInfo : public MethodInfo { };
 
+	/// <summary>
+	/// 普通方法信息
+	/// </summary>
 	struct RTTR_API NormalMethodInfo : public MethodInfo { };
 
+	/// <summary>
+	/// const方法信息
+	/// </summary>
 	struct RTTR_API ConstMethodInfo : public MethodInfo { };
 
-	class TypeInfoImpl;
+	/// <summary>
+	/// 类型信息
+	/// </summary>
 	class RTTR_API TypeInfo
 	{
 	public:
@@ -315,6 +324,15 @@ namespace RTTR
 		return args;
 	}
 
+	/// <summary>
+	/// 调用静态方法
+	/// </summary>
+	/// <typeparam name="F">函数类型</typeparam>
+	/// <typeparam name="...Args">参数包</typeparam>
+	/// <param name="name">类名</param>
+	/// <param name="method">方法名</param>
+	/// <param name="...args">参数</param>
+	/// <returns></returns>
 	template<typename F, typename... Args>
 	static decltype(auto) invokeStaticMethod(const std::string& name, const std::string& method, Args... args)
 	{
@@ -330,7 +348,7 @@ namespace RTTR
 	}
 
 	/// <summary>
-	/// 用于提取类成员函数类类型的类模板
+	/// 用于提取类成员函数特征的类模板
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	template<typename T>
@@ -350,6 +368,16 @@ namespace RTTR
 		using is_const = std::true_type;
 	};
 
+	/// <summary>
+	/// 调用普通方法
+	/// </summary>
+	/// <typeparam name="F">函数类型</typeparam>
+	/// <typeparam name="...Args">参数包</typeparam>
+	/// <param name="name">类名</param>
+	/// <param name="method">方法名</param>
+	/// <param name="o">类对象</param>
+	/// <param name="...args">参数</param>
+	/// <returns></returns>
 	template<typename F, typename... Args>
 	static decltype(auto) invokeNormalMethod(const std::string& name, const std::string& method, void* o, Args... args)
 	{
@@ -367,6 +395,16 @@ namespace RTTR
 		}
 	}
 
+	/// <summary>
+	/// 调用const方法
+	/// </summary>
+	/// <typeparam name="F">函数类型</typeparam>
+	/// <typeparam name="...Args">参数包</typeparam>
+	/// <param name="name">类名</param>
+	/// <param name="method">方法名</param>
+	/// <param name="o">类对象</param>
+	/// <param name="...args">参数</param>
+	/// <returns></returns>
 	template<typename F, typename... Args>
 	static decltype(auto) invokeConstMethod(const std::string& name, const std::string& method, const void* o, Args... args)
 	{
@@ -384,6 +422,13 @@ namespace RTTR
 		}
 	}
 
+	/// <summary>
+	/// 获取静态成员的值
+	/// </summary>
+	/// <typeparam name="M">成员类型</typeparam>
+	/// <param name="name">类名</param>
+	/// <param name="member">成员名</param>
+	/// <returns></returns>
 	template<typename M>
 	static decltype(auto) valueStaticMember(const std::string& name, const std::string& member)
 	{
@@ -394,6 +439,15 @@ namespace RTTR
 		}
 	}
 
+	/// <summary>
+	/// 获取普通成员的值
+	/// </summary>
+	/// <typeparam name="M">成员类型</typeparam>
+	/// <typeparam name="T">类类型</typeparam>
+	/// <param name="name">类名</param>
+	/// <param name="member">方法名</param>
+	/// <param name="o">类对象</param>
+	/// <returns></returns>
 	template<typename M, typename T>
 	static decltype(auto) valueNormalMember(const std::string& name, const std::string& member, T* o)
 	{
