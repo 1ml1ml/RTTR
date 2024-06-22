@@ -22,6 +22,7 @@ namespace RTTR
 
 		std::unordered_multimap<std::string, StaticMethodInfo> staticMethods;	//静态方法
 		std::unordered_multimap<std::string, NormalMethodInfo> normalMethods;	//普通方法
+		std::unordered_multimap<std::string, ConstMethodInfo> constMethods;		//const方法
 	};
 }
 
@@ -168,8 +169,35 @@ std::unordered_set<std::string> RTTR::TypeInfo::normalMethodNames() const
 
 std::list<RTTR::NormalMethodInfo> RTTR::TypeInfo::normalMethod(const std::string& name) const
 {
-	auto pair{ m_impl->normalMethods.equal_range(name) };
 	std::list<RTTR::NormalMethodInfo> methods;
+	auto pair{ m_impl->normalMethods.equal_range(name) };
+	while (pair.first != pair.second) methods.push_back(pair.first++->second);
+	return methods;
+}
+
+bool RTTR::TypeInfo::registerConstMethod(const ConstMethodInfo& info)
+{
+	assert(false == info.name.empty() && info.interview != None && info.returnInfo != nullptr && info.address != nullptr);
+if (auto methods{ constMethod(info.name) }; std::find_if(methods.begin(), methods.end(), [&info](const ConstMethodInfo& val) { return val.address == info.address; }) == methods.end())
+	{
+		m_impl->constMethods.insert({ info.name, info });
+		return true;
+	}
+
+	return false;
+}
+
+std::unordered_set<std::string> RTTR::TypeInfo::constMethodNames() const
+{
+	std::unordered_set<std::string> names{};
+	for (const auto& [name, info] : m_impl->constMethods) names.insert(name);
+	return names;
+}
+
+std::list<RTTR::ConstMethodInfo> RTTR::TypeInfo::constMethod(const std::string& name) const
+{
+	std::list<RTTR::ConstMethodInfo> methods;
+	auto pair{ m_impl->constMethods.equal_range(name) };
 	while (pair.first != pair.second) methods.push_back(pair.first++->second);
 	return methods;
 }
