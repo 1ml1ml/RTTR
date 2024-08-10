@@ -1,4 +1,4 @@
-#include "RTTR.hpp"
+#include "RTTR.h"
 #include "CppUnitTest.h"
 
 #include "FakeObject/AFakeObject.h"

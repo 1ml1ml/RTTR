@@ -1,6 +1,6 @@
 #include <string>
 
-#include "RTTR.hpp"
+#include "RTTR.h"
 #include "AFakeObject.h"
 
 RTTR_REGISTER(std::string)

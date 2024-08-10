@@ -19,11 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\RTTR.cpp" />
-    <ClCompile Include="src\RTTRRegister.hpp" />
+    <ClCompile Include="src\RTTRCore\RTTRCore.cpp" />
+    <ClCompile Include="src\RTTRInfo\RTTRInfo.cpp" />
+    <ClCompile Include="src\RTTRRegister\RTTRRegister.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\RTTR.hpp" />
+    <ClInclude Include="src\RTTRCore\RTTRCore.hpp" />
+    <ClInclude Include="src\RTTRInfo\RTTRInfo.h" />
+    <ClInclude Include="src\RTTR.h" />
+    <ClInclude Include="src\RTTRInvoke\RTTRInvoke.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -78,10 +82,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)RTTRLib\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)RTTRLib\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

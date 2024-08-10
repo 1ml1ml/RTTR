@@ -15,15 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\RTTR.cpp">
+    <ClCompile Include="src\RTTRRegister\RTTRRegister.hpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\RTTRRegister.hpp">
+    <ClCompile Include="src\RTTRInfo\RTTRInfo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RTTRCore\RTTRCore.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\RTTR.hpp">
+    <ClInclude Include="src\RTTR.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RTTRInfo\RTTRInfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RTTRInvoke\RTTRInvoke.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RTTRCore\RTTRCore.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

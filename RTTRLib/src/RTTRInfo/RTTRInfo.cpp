@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <unordered_map>
 
-#include "RTTR.hpp"
+#include "RTTRInfo.h"
 
 namespace RTTR
 {
@@ -12,7 +12,7 @@ namespace RTTR
 		{
 		public:
 			explicit AddressEqual(const void* address) : address(address) {}
-			
+
 		public:
 			template<typename T>
 			bool operator ()(const T& value) { return value.address == address; }
@@ -20,6 +20,7 @@ namespace RTTR
 		private:
 			const void* address;
 		};
+
 	public:
 		static inline std::unordered_map<std::string, RTTRInfo*> s_infos{};
 
@@ -36,29 +37,6 @@ namespace RTTR
 		std::unordered_multimap<std::string, NormalMethodInfo> normalMethods{};	//普通方法
 		std::unordered_multimap<std::string, ConstMethodInfo> constMethods{};	//const方法
 	};
-
-	Superclass::Superclass(Interview interview, RTTRInfo* info) : 
-		interview(interview), info(info)
-	{
-		assert(interview && info);
-	}
-
-	MemberInfo::MemberInfo(const std::string& name, Interview interview, RTTRInfo* info) : 
-		name(name), interview(interview), info(info)
-	{
-		assert(!name.empty() && interview && info);
-	}
-	
-	StaticMemberInfo::StaticMemberInfo(const std::string& name, Interview interview, RTTRInfo* info, const void* address) : MemberInfo(name, interview, info), 
-		address(address)
-	{
-		assert(address);
-	}
-
-	NormalMemberInfo::NormalMemberInfo(const std::string& name, Interview interview, RTTRInfo* info, int offset) : MemberInfo(name, interview, info), 
-		offset(offset)
-	{
-	}
 }
 
 RTTR::RTTRInfo* RTTR::RTTRInfo::info(const std::string& name)
