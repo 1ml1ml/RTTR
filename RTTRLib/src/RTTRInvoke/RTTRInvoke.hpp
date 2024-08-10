@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RTTRRegister/RTTRRegister.hpp"
+#include "RTTRInfo/RTTRInfo.h"
 
 namespace RTTR
 {

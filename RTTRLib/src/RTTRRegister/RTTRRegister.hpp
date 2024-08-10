@@ -2,20 +2,6 @@
 
 #include "RTTRInfo/RTTRInfo.h"
 
-namespace RTTR
-{
-	template<typename T>
-	class RealRTTRInfo : public RTTRInfo { };
-
-	/// <summary>
-	/// 解包参数包获取参数信息
-	/// </summary>
-	/// <typeparam name="...Args"></typeparam>
-	/// <returns></returns>
-	template<typename... Args>
-	static std::list<RTTRInfo*> unpackArgsInfo() { return { RealRTTRInfo<Args>::instance()... }; }
-}
-
 //注册类型
 #define RTTR_REGISTER(T) \
 namespace RTTR \
